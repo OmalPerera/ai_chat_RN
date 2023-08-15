@@ -1,21 +1,39 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {setCounterAction} from './counterActions';
 
 const CounterComponent = (): React.JSX.Element => {
   const currentNum = useSelector(state => state.counterReducer.currentNumber);
+  const dispatch = useDispatch();
+
+  const updateCounterValue = (operator: '+' | '-') => {
+    if (operator === '+') {
+      dispatch(setCounterAction(currentNum + 1));
+    } else {
+      dispatch(setCounterAction(currentNum - 1));
+    }
+  };
 
   return (
     <>
       <Text style={styles.titleStyles}>Testing flux & thunk</Text>
       <View style={styles.counterContainer}>
-        <TouchableOpacity style={styles.btnContainer}>
+        <TouchableOpacity
+          style={styles.btnContainer}
+          onPress={() => {
+            updateCounterValue('-');
+          }}>
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
         <View style={styles.valueContainer}>
           <Text style={styles.valueStyle}>{currentNum}</Text>
         </View>
-        <TouchableOpacity style={styles.btnContainer}>
+        <TouchableOpacity
+          style={styles.btnContainer}
+          onPress={() => {
+            updateCounterValue('+');
+          }}>
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
