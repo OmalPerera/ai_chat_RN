@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {Provider} from 'react-redux';
+import store from './store';
 
 const App = (): React.JSX.Element => {
   const backgroundStyle = {
@@ -15,28 +17,32 @@ const App = (): React.JSX.Element => {
 
   return (
     <>
-      <SafeAreaView style={backgroundStyle} />
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
+      <Provider store={store}>
+        <>
+          <SafeAreaView style={backgroundStyle} />
+          <StatusBar
+            barStyle={'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
 
-      <View style={styles.bodyContainer}>
-        <Text style={styles.titleStyles}>Testing flux & thunk</Text>
+          <View style={styles.bodyContainer}>
+            <Text style={styles.titleStyles}>Testing flux & thunk</Text>
 
-        <View style={styles.counterContainer}>
-          <TouchableOpacity style={styles.btnContainer}>
-            <Text style={styles.buttonText}>-</Text>
-          </TouchableOpacity>
-          <View style={styles.valueContainer}>
-            <Text style={styles.valueStyle}>0</Text>
+            <View style={styles.counterContainer}>
+              <TouchableOpacity style={styles.btnContainer}>
+                <Text style={styles.buttonText}>-</Text>
+              </TouchableOpacity>
+              <View style={styles.valueContainer}>
+                <Text style={styles.valueStyle}>0</Text>
+              </View>
+              <TouchableOpacity style={styles.btnContainer}>
+                <Text style={styles.buttonText}>+</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <TouchableOpacity style={styles.btnContainer}>
-            <Text style={styles.buttonText}>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <SafeAreaView />
+          <SafeAreaView />
+        </>
+      </Provider>
     </>
   );
 };
