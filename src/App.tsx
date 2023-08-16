@@ -3,6 +3,7 @@ import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import store from './store';
 import CounterComponent from './features/counter/counterComponent';
+import ToDoComponent from './features/todo/components/todoComponent';
 
 const App = (): React.JSX.Element => {
   const backgroundStyle = {
@@ -20,6 +21,7 @@ const App = (): React.JSX.Element => {
           />
           <View style={styles.bodyContainer}>
             <CounterComponent />
+            <ToDoComponent />
           </View>
           <SafeAreaView />
         </>
