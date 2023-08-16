@@ -1,4 +1,5 @@
 import {SET_COUNTER} from '../actionTypes';
+import {Action} from './types';
 
 const INITIAL_STATE = {
   currentNumber: 1,
