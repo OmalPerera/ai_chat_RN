@@ -1,26 +1,53 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Todo} from '../../../types/todo.types';
 import {todoList} from '../mockData';
+import {useDispatch, useSelector} from 'react-redux';
+import {addNewTodoItem} from '../todoAction';
 
 const ToDoComponent = (): React.JSX.Element => {
-  const renderTodoItem = (e: Todo) => {
+  const dispatch = useDispatch();
+  const isInProgress = useSelector(
+    state => state.todoReducer.isTodoItemPending,
+  );
+
+  const renderTodoItem = (item: Todo) => {
     return (
       <View style={styles.singleListItemContainer}>
-        <Text>{e.id + '. '}</Text>
-        <Text style={styles.todoListItemTitle}>{e.title}</Text>
-        <Text>{e.completed ? 'Done' : 'Todo'}</Text>
+        <Text>{item.id + '. '}</Text>
+        <Text style={styles.todoListItemTitle}>{item.title}</Text>
+        <Text>{item.completed ? 'Done' : 'Todo'}</Text>
       </View>
     );
+  };
+
+  const addItemToList = () => {
+    dispatch(addNewTodoItem(5));
+    // const xx = await getTodoItemById(4);
+    // console.log('Add item', xx);
   };
 
   return (
     <View style={styles.outermostContainer}>
       <View style={styles.conentWrapper}>
         <Text style={styles.titleStyles}>Todo list</Text>
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={addItemToList}>
           <Text style={styles.addBtnText}>+ Add</Text>
         </TouchableOpacity>
+        <ActivityIndicator
+          animating={isInProgress}
+          size={'small'}
+          color={'#000'}
+        />
         <FlatList
           style={styles.listContainer}
           data={todoList}
