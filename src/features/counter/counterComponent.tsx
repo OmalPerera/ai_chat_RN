@@ -11,10 +11,10 @@ const CounterComponent = (): React.JSX.Element => {
 
   const updateCounterValue = (operator: '+' | '-') => {
     if (operator === '+') {
-      dispatch(setValue(currentNum + 1));
-      //dispatch(setCounterAction(currentNum + 1));
+      //dispatch(setValue(currentNum + 1));
+      dispatch(setCounterAction(currentNum + 1));
     } else {
-      dispatch(setValue(currentNum - 1));
+      dispatch(setValue(currentNum - 1, 10));
       //dispatch(setCounterAction(currentNum - 1));
     }
   };
