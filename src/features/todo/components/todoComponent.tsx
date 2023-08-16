@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import {Todo} from '../../../types/todo.types';
-import {todoList} from '../mockData';
 import {useDispatch, useSelector} from 'react-redux';
 import {addNewTodoItem} from '../todoAction';
 
@@ -17,6 +16,7 @@ const ToDoComponent = (): React.JSX.Element => {
   const isInProgress = useSelector(
     state => state.todoReducer.isTodoItemPending,
   );
+  const todoList: Todo[] = useSelector(state => state.todoReducer.todoList);
 
   const renderTodoItem = (item: Todo) => {
     return (
@@ -29,9 +29,7 @@ const ToDoComponent = (): React.JSX.Element => {
   };
 
   const addItemToList = () => {
-    dispatch(addNewTodoItem(5));
-    // const xx = await getTodoItemById(4);
-    // console.log('Add item', xx);
+    dispatch(addNewTodoItem(todoList.length + 1));
   };
 
   return (

@@ -1,4 +1,8 @@
-import {TODO_ITEM_FETCH_PENDING} from '../actionTypes';
+import {
+  TODO_ITEM_FETCH_FAILED,
+  TODO_ITEM_FETCH_PENDING,
+  TODO_ITEM_FETCH_SUCCESS,
+} from '../actionTypes';
 import {Action} from './types';
 
 const INITIAL_STATE = {
@@ -12,6 +16,17 @@ const todoReducer = (state = INITIAL_STATE, action: Action) => {
       return {
         ...state,
         isTodoItemPending: true,
+      };
+    case TODO_ITEM_FETCH_SUCCESS:
+      return {
+        ...state,
+        todoList: state.todoList.concat(action.payload),
+        isTodoItemPending: false,
+      };
+    case TODO_ITEM_FETCH_FAILED:
+      return {
+        ...state,
+        isTodoItemPending: false,
       };
     default:
       return state;
