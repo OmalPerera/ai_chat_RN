@@ -2,9 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCounterAction} from './counterActions';
+import {RootStoreType} from '../../store/reducers/types';
 
 const CounterComponent = (): React.JSX.Element => {
-  const currentNum = useSelector(state => state.counterReducer.currentNumber);
+  const currentNum = useSelector(
+    (state: RootStoreType) => state.counterReducer.currentNumber,
+  );
   const dispatch = useDispatch();
 
   const updateCounterValue = (operator: '+' | '-') => {
