@@ -7,18 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Todo} from '../../../types/todo.types';
+import {TodoType} from '../../../types/todo.types';
 import {useDispatch, useSelector} from 'react-redux';
 import {addNewTodoItem} from '../todoAction';
+import {RootStoreType} from '../../../store/reducers/types';
 
 const ToDoComponent = (): React.JSX.Element => {
   const dispatch = useDispatch();
   const isInProgress = useSelector(
-    state => state.todoReducer.isTodoItemPending,
+    (state: RootStoreType) => state.todoReducer.isTodoItemPending,
   );
-  const todoList: Todo[] = useSelector(state => state.todoReducer.todoList);
+  const todoList = useSelector(
+    (state: RootStoreType) => state.todoReducer.todoList,
+  );
 
-  const renderTodoItem = (item: Todo) => {
+  const renderTodoItem = (item: TodoType) => {
     return (
       <View style={styles.singleListItemContainer}>
         <Text>{item.id + '. '}</Text>
@@ -29,6 +32,7 @@ const ToDoComponent = (): React.JSX.Element => {
   };
 
   const addItemToList = () => {
+    console.log(typeof addNewTodoItem(todoList.length + 1));
     dispatch(addNewTodoItem(todoList.length + 1));
   };
 

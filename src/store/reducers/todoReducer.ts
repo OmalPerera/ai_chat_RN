@@ -1,16 +1,17 @@
+import {TodoReducerType} from '../../types/todo.types';
 import {
   TODO_ITEM_FETCH_FAILED,
   TODO_ITEM_FETCH_PENDING,
   TODO_ITEM_FETCH_SUCCESS,
 } from '../actionTypes';
-import {Action} from './types';
+import {ActionType} from './types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: TodoReducerType = {
   todoList: [],
   isTodoItemPending: false,
 };
 
-const todoReducer = (state = INITIAL_STATE, action: Action) => {
+const todoReducer = (state = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
     case TODO_ITEM_FETCH_PENDING:
       return {

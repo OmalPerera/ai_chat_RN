@@ -1,11 +1,12 @@
+import {CounterReducerType} from '../../types/counter.types';
 import {SET_COUNTER} from '../actionTypes';
-import {Action} from './types';
+import {ActionType} from './types';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: CounterReducerType = {
   currentNumber: 1,
 };
 
-const counterReducer = (state = INITIAL_STATE, action: Action) => {
+const counterReducer = (state = INITIAL_STATE, action: ActionType) => {
   switch (action.type) {
     case SET_COUNTER:
       console.log('----- Reducer : ', action);
