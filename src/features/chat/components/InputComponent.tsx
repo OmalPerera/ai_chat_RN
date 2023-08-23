@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -8,17 +8,17 @@ import {
 } from 'react-native';
 import {colors, images} from '../../../utils';
 
-const InputComponent = () => {
-  const onChangeText = () => {};
+const InputComponent = ({onSend}) => {
+  const [msg, setMsg] = useState('');
 
   return (
     <View style={styles.inputSectionContainer}>
       <View style={styles.txtInputWraper}>
         <TextInput
           style={styles.inputStyle}
-          onChangeText={onChangeText}
+          onChangeText={setMsg}
           placeholder="Type here..."
-          //value={}
+          value={msg}
           inputMode="text"
           multiline
           placeholderTextColor={colors.white}
@@ -27,7 +27,11 @@ const InputComponent = () => {
           <Image source={images.repeat} style={styles.regenerateImg} />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.sendBtnPressable}>
+      <TouchableOpacity
+        style={styles.sendBtnPressable}
+        onPress={() => {
+          onSend(msg);
+        }}>
         <Image source={images.send} style={styles.sendImg} />
       </TouchableOpacity>
     </View>
