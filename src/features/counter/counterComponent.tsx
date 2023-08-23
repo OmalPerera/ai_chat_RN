@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCounterAction} from './counterActions';
-import {setValue} from './newCounterReducer';
+//import {setValue} from './newCounterReducer';
 
 const CounterComponent = (): React.JSX.Element => {
   //const currentNum = useSelector(state => state.counterReducer.currentNumber);
-  const currentNum = useSelector(state => state.counterSlice.currentNumber);
+  const currentNum = 0; //useSelector(state => state.counterSlice.currentNumber);
   const dispatch = useDispatch();
 
   const updateCounterValue = (operator: '+' | '-') => {
@@ -14,7 +14,7 @@ const CounterComponent = (): React.JSX.Element => {
       //dispatch(setValue(currentNum + 1));
       dispatch(setCounterAction(currentNum + 1));
     } else {
-      dispatch(setValue(currentNum - 1, 10));
+      //dispatch(setValue(currentNum - 1, 10));
       //dispatch(setCounterAction(currentNum - 1));
     }
   };
