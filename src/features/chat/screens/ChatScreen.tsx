@@ -4,10 +4,10 @@ import NavBarComponent from '../components/NavBarComponent';
 import InputComponent from '../components/InputComponent';
 import StartChatInstructionsComponent from '../components/StartChatInstructionsComponent';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateThread} from '../reducer/chatReducer';
 import {ConversationType} from '../../../types/chat.types';
 import {RootStoreType} from '../../../store/reducers/types';
 import ChatBubbleComponent from '../components/ChatBubble';
+import {sendMsgAction} from '../actions/chatActions';
 
 const ChatScreen = (): React.JSX.Element => {
   const chatConversation = useSelector(
@@ -21,7 +21,7 @@ const ChatScreen = (): React.JSX.Element => {
       isBot: false,
       msgContent: msg,
     };
-    dispatch(updateThread(message));
+    dispatch<any>(sendMsgAction(message));
   };
 
   return (
@@ -31,7 +31,11 @@ const ChatScreen = (): React.JSX.Element => {
         {chatConversation.length > 0 ? (
           <>
             {chatConversation.map(e => (
-              <ChatBubbleComponent isBot={e.isBot} msg={e.msgContent} />
+              <ChatBubbleComponent
+                isBot={e.isBot}
+                msg={e.msgContent}
+                key={e.timeStamp}
+              />
             ))}
           </>
         ) : (

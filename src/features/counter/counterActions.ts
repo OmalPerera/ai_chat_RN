@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {setValue} from './newCounterReducer';
+//import {setValue} from './newCounterReducer';
 
 //import {SET_COUNTER} from '../../store/actionTypes';
 const SET_COUNTER = 'counter/setValue';
@@ -10,12 +10,11 @@ export const setCounterAction = (newValue: number) => ({
 });
 
 export const customSetCounterAction = (value: number, gap: number) => {
-  console.log('Prepare : ', value, gap);
   return {payload: value - gap};
 };
 
-export const doAPIcall = () => {
-  return (dispatch: Dispatch) => {
-    dispatch(setValue(1, 5));
-  };
-};
+// export const doAPIcall = () => {
+//   return (dispatch: Dispatch) => {
+//     dispatch(setValue(1, 5));
+//   };
+// };

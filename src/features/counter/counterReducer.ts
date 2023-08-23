@@ -1,4 +1,5 @@
 import {SET_COUNTER} from '../../store/actionTypes';
+import {Action} from '../../store/reducers/types';
 
 const INITIAL_STATE = {
   currentNumber: 1,
@@ -7,7 +8,6 @@ const INITIAL_STATE = {
 const counterReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
     case SET_COUNTER:
-      console.log('----- Reducer : ', action);
       return {
         ...state,
         currentNumber: action.payload,
