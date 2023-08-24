@@ -56,13 +56,14 @@ const styles = StyleSheet.create({
     borderColor: colors.greyBorder,
     borderWidth: 1,
     paddingHorizontal: 15,
-    paddingVertical: 8,
     borderRadius: 25,
   },
   inputStyle: {
     color: colors.white,
     fontSize: 17,
-    paddingBottom: 5,
+    paddingTop: 12,
+    flex: 1,
+    height: 45,
   },
   sendBtnPressable: {
     backgroundColor: colors.themeColor,
