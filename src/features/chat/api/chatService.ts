@@ -1,3 +1,4 @@
+import restClient from '../../../network/httpService';
 import {ConversationType} from '../../../types/chat.types';
 import axios from 'axios';
 
@@ -8,6 +9,8 @@ const sendMsgService = (message: string) => {
     .get(CHAT_URL)
     .then(response => response.data as ConversationType)
     .catch(e => console.log(e));
+
+  //return restClient.get('427dd982-2563-436e-a1e2-706e4b9f9ff8');
 };
 
 export default sendMsgService;
