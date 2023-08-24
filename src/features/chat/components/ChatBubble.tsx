@@ -2,7 +2,15 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {colors, images} from '../../../utils';
 
-const ChatBubbleComponent = ({isBot = false, msg = ''}) => {
+type ChatBubbleComponentProps = {
+  isBot: boolean;
+  msg: string;
+};
+
+const ChatBubbleComponent = ({
+  isBot = false,
+  msg = '',
+}: ChatBubbleComponentProps): React.JSX.Element => {
   const getAvatarImage = () => {
     return isBot
       ? images.botHeadshot

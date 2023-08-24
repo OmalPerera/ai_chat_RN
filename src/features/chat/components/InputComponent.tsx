@@ -8,7 +8,11 @@ import {
 } from 'react-native';
 import {colors, images} from '../../../utils';
 
-const InputComponent = ({onSend}) => {
+interface InputComponentProps {
+  onSend: (msg: string) => void;
+}
+
+const InputComponent = ({onSend}: InputComponentProps): React.JSX.Element => {
   const [msg, setMsg] = useState('');
 
   return (
