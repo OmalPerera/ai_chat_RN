@@ -1,30 +1,31 @@
 import axios from 'axios';
 
-const defaultTimeout = 15000;
+const DEFAULT_TIMEOUT = 15000;
+const BASE_URL = 'https://run.mocky.io/v3/';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://run.mocky.io/v3/',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: defaultTimeout,
+  timeout: DEFAULT_TIMEOUT,
 });
 
-// axiosInstance.interceptors.response.use(
-//   response => {
-//     console.log('Response is intercepted: ', response.data);
-//     return response.data;
-//   },
-//   error => {
-//     console.error('Request failed:', error);
-//     return Promise.reject(error);
-//   },
-// );
+axiosInstance.interceptors.response.use(
+  response => {
+    console.log('Response is intercepted: ', response.data);
+    return response.data;
+  },
+  error => {
+    console.error('Request failed:', error);
+    return Promise.reject(error);
+  },
+);
 
 const get = (url: string) => {
   return axiosInstance
     .get(url)
-    .then(response => response.data)
+    .then(response => response)
     .catch(e => {
       console.log(e);
       throw e;
@@ -34,7 +35,7 @@ const get = (url: string) => {
 const post = (url: string, data: any) => {
   return axiosInstance
     .post(url, data)
-    .then(response => response.data)
+    .then(response => response)
     .catch(e => {
       console.log(e);
       throw e;
