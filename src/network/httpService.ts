@@ -1,12 +1,14 @@
 import axios from 'axios';
-import {BASE_URL} from './url';
+import {BASE_URL, OPEN_AI_URL} from './url';
 
 const DEFAULT_TIMEOUT = 15000;
+const OPENAI_KEY = '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';
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: OPEN_AI_URL,
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${OPENAI_KEY}`,
   },
   timeout: DEFAULT_TIMEOUT,
 });
@@ -32,7 +34,7 @@ const get = (url: string) => {
     });
 };
 
-const post = (url: string, data: any) => {
+const post = (url: string, data: any): any => {
   return axiosInstance
     .post(url, data)
     .then(response => response)
