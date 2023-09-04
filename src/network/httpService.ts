@@ -2,7 +2,7 @@ import axios from 'axios';
 import {BASE_URL, OPEN_AI_URL} from './url';
 
 const DEFAULT_TIMEOUT = 15000;
-const OPENAI_KEY = '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';
+const OPENAI_KEY = '';
 
 const axiosInstance = axios.create({
   baseURL: OPEN_AI_URL,
