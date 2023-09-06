@@ -16,18 +16,9 @@ export const AppNavigator = ({isNewUser}: IsNewUser): React.JSX.Element => {
         initialRouteName={isNewUser ? 'OnboardingScreen' : 'AuthStackScreens'}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
-        {/* <Stack.Screen
-          name="AuthStackScreens"
-          getComponent={() => AuthenticatedStack}
-        /> */}
-        {/* <Stack.Screen
-          name="AuthStackScreens"
-          getComponent={() => DrawerNavigator}
-        /> */}
-        <Stack.Screen
-          name="AuthStackScreens"
-          getComponent={() => BottomTabBar}
-        />
+        {/* <Stack.Screen name="AuthStackScreens" component={AuthenticatedStack} /> */}
+        {/* <Stack.Screen name="AuthStackScreens" component={DrawerNavigator} /> */}
+        <Stack.Screen name="AuthStackScreens" component={BottomTabBar} />
       </Stack.Navigator>
     </NavigationContainer>
   );
