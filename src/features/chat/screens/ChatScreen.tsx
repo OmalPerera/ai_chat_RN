@@ -1,5 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
 import NavBarComponent from '../components/NavBarComponent';
 import InputComponent from '../components/InputComponent';
 import StartChatInstructionsComponent from '../components/StartChatInstructionsComponent';
@@ -8,6 +14,7 @@ import {ConversationType} from '../../../types/chat.types';
 import {RootStoreType} from '../../../store/reducers/types';
 import ChatBubbleComponent from '../components/ChatBubble';
 import {sendMsgAction} from '../actions/chatActions';
+import {colors} from '../../../utils';
 
 const ChatScreen = (): React.JSX.Element => {
   const chatConversation = useSelector(
@@ -25,25 +32,32 @@ const ChatScreen = (): React.JSX.Element => {
   };
 
   return (
-    <View style={styles.outermostContainer}>
-      <NavBarComponent />
-      <ScrollView style={styles.promptContainer}>
-        {chatConversation.length > 0 ? (
-          <>
-            {chatConversation.map(e => (
-              <ChatBubbleComponent
-                isBot={e.isBot}
-                msg={e.msgContent}
-                key={e.timeStamp}
-              />
-            ))}
-          </>
-        ) : (
-          <StartChatInstructionsComponent />
-        )}
-      </ScrollView>
-      <InputComponent onSend={onMsgSend} />
-    </View>
+    <>
+      <SafeAreaView style={styles.backgroundStyle} />
+      <StatusBar barStyle={'light-content'} backgroundColor={colors.greyBg} />
+      <View style={styles.bodyContainer}>
+        <View style={styles.outermostContainer}>
+          <NavBarComponent />
+          <ScrollView style={styles.promptContainer}>
+            {chatConversation.length > 0 ? (
+              <>
+                {chatConversation.map(e => (
+                  <ChatBubbleComponent
+                    isBot={e.isBot}
+                    msg={e.msgContent}
+                    key={e.timeStamp}
+                  />
+                ))}
+              </>
+            ) : (
+              <StartChatInstructionsComponent />
+            )}
+          </ScrollView>
+          <InputComponent onSend={onMsgSend} />
+        </View>
+      </View>
+      <SafeAreaView style={styles.backgroundStyle} />
+    </>
   );
 };
 
@@ -55,6 +69,13 @@ const styles = StyleSheet.create({
   promptContainer: {
     flex: 1,
     flexDirection: 'column-reverse',
+  },
+  bodyContainer: {
+    backgroundColor: colors.greyBg,
+    flex: 1,
+  },
+  backgroundStyle: {
+    backgroundColor: colors.greyBg,
   },
 });
 
