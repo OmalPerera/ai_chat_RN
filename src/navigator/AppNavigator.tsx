@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OnboardingScreen from '../features/onboarding/OnboardingScreen';
 import AuthenticatedStack from './stacks/AuthenticatedStack';
 import DrawerNavigator from './drawer/DrawerNavigator';
+import BottomTabBar from './bottomTabBar/BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 type IsNewUser = {isNewUser: boolean};
@@ -19,9 +20,13 @@ export const AppNavigator = ({isNewUser}: IsNewUser): React.JSX.Element => {
           name="AuthStackScreens"
           getComponent={() => AuthenticatedStack}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="AuthStackScreens"
           getComponent={() => DrawerNavigator}
+        /> */}
+        <Stack.Screen
+          name="AuthStackScreens"
+          getComponent={() => BottomTabBar}
         />
       </Stack.Navigator>
     </NavigationContainer>
