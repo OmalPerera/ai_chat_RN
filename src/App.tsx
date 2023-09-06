@@ -1,12 +1,14 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import store from './store';
-import ChatScreen from './features/chat/screens/ChatScreen';
+import {AppNavigator} from './navigator/AppNavigator';
+import 'react-native-gesture-handler';
 
+const isNewUser = false;
 const App = (): React.JSX.Element => {
   return (
     <Provider store={store}>
-      <ChatScreen />
+      <AppNavigator isNewUser={isNewUser} />
     </Provider>
   );
 };

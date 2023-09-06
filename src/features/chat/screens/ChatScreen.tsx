@@ -15,11 +15,14 @@ import {RootStoreType} from '../../../store/reducers/types';
 import ChatBubbleComponent from '../components/ChatBubble';
 import {sendMsgAction} from '../actions/chatActions';
 import {colors} from '../../../utils';
+import {useNavigation} from '@react-navigation/native';
 
 const ChatScreen = (): React.JSX.Element => {
   const chatConversation = useSelector(
     (state: RootStoreType) => state.chatReducer.conversationThread,
   );
+
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const onMsgSend = (msg: string) => {
@@ -31,13 +34,20 @@ const ChatScreen = (): React.JSX.Element => {
     dispatch<any>(sendMsgAction(message));
   };
 
+  const onRightBtnPress = () => {
+    navigation.navigate('AboutScreen');
+  };
+
   return (
     <>
       <SafeAreaView style={styles.backgroundStyle} />
       <StatusBar barStyle={'light-content'} backgroundColor={colors.greyBg} />
       <View style={styles.bodyContainer}>
         <View style={styles.outermostContainer}>
-          <NavBarComponent />
+          <NavBarComponent
+            onMenuPress={() => {}}
+            onRightBtnPress={onRightBtnPress}
+          />
           <ScrollView style={styles.promptContainer}>
             {chatConversation.length > 0 ? (
               <>
