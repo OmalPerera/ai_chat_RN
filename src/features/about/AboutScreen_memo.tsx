@@ -1,20 +1,30 @@
-import React, {useCallback, useState} from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {colors} from '../../utils';
-import InputComponent from '../chat/components/InputComponent';
 
 const AboutScreen = (): React.JSX.Element => {
-  const data = ['A', 'B', 'C', 'D'];
   const [theme, setTheme] = useState(-1);
-  const [emp, setEmp] = useState(data);
+  const [number, setNumber] = useState(0);
 
-  const onPress = useCallback(
-    (txt: string) => {
-      const filteredEmp = emp.filter(e => e === txt);
-      setEmp(filteredEmp);
-    },
-    [emp],
-  );
+  const onChangeNumber = num => {
+    setNumber(num);
+  };
+
+  const multiplyBy100 = (value: number) => {
+    console.log('val :', typeof value);
+
+    for (let i = 0; i < 1999999999; i++) {}
+    return value * 100;
+  };
+
+  const result = useMemo(() => multiplyBy100(number), [number]);
 
   return (
     <>
@@ -26,14 +36,19 @@ const AboutScreen = (): React.JSX.Element => {
             ? {backgroundColor: '#eeeeee'}
             : {backgroundColor: '#aaaaaa'},
         ]}>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeNumber}
+          value={number.toString()}
+          keyboardType="numeric"
+        />
         <Button
           onPress={() => {
             setTheme(theme * -1);
           }}
           title="Change theme"
         />
-        <Text>{emp.toString()}</Text>
-        <InputComponent onSend={onPress} />
+        <Text>{result}</Text>
       </View>
     </>
   );

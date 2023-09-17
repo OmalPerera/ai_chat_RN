@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -42,7 +42,7 @@ const InputComponent = ({onSend}: InputComponentProps): React.JSX.Element => {
   );
 };
 
-export default InputComponent;
+export default memo(InputComponent);
 
 const styles = StyleSheet.create({
   inputSectionContainer: {
