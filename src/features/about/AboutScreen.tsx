@@ -1,39 +1,15 @@
-import React, {useCallback, useState} from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, SafeAreaView, StyleSheet, View} from 'react-native';
 import {colors} from '../../utils';
-import InputComponent from '../chat/components/InputComponent';
+import MyProfileComponent from './profile';
 
 const AboutScreen = (): React.JSX.Element => {
-  const data = ['A', 'B', 'C', 'D'];
-  const [theme, setTheme] = useState(-1);
-  const [emp, setEmp] = useState(data);
-
-  const onPress = useCallback(
-    (txt: string) => {
-      const filteredEmp = emp.filter(e => e === txt);
-      setEmp(filteredEmp);
-    },
-    [emp],
-  );
-
   return (
     <>
       <SafeAreaView style={styles.backgroundStyle} />
-      <View
-        style={[
-          styles.outermostContainer,
-          theme === -1
-            ? {backgroundColor: '#eeeeee'}
-            : {backgroundColor: '#aaaaaa'},
-        ]}>
-        <Button
-          onPress={() => {
-            setTheme(theme * -1);
-          }}
-          title="Change theme"
-        />
-        <Text>{emp.toString()}</Text>
-        <InputComponent onSend={onPress} />
+      <View style={styles.outermostContainer}>
+        <MyProfileComponent />
+        <Button onPress={() => {}} title="Change theme" />
       </View>
     </>
   );
