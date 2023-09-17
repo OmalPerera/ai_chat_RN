@@ -48,7 +48,7 @@ const ChatScreen = (props): React.JSX.Element => {
         <View style={styles.outermostContainer}>
           <NavBarComponent
             onMenuPress={() => {
-              navigation.openDrawer();
+              //navigation.openDrawer();
             }}
             onRightBtnPress={onRightBtnPress}
           />
