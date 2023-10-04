@@ -1,9 +1,12 @@
 import React from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import NavBarComponent from '../components/NavBarComponent';
@@ -16,6 +19,7 @@ import ChatBubbleComponent from '../components/ChatBubble';
 import {sendMsgAction} from '../actions/chatActions';
 import {colors} from '../../../utils';
 import {useNavigation} from '@react-navigation/native';
+import {useSession} from '../useSession';
 
 const ChatScreen = (props): React.JSX.Element => {
   const {navigation} = props;
@@ -23,6 +27,7 @@ const ChatScreen = (props): React.JSX.Element => {
   const chatConversation = useSelector(
     (state: RootStoreType) => state.chatReducer.conversationThread,
   );
+  const [token, setToken] = useSession('session', 'Alskkjhfj-56sdkj');
 
   //const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -67,7 +72,8 @@ const ChatScreen = (props): React.JSX.Element => {
               <StartChatInstructionsComponent />
             )}
           </ScrollView>
-          <InputComponent onSend={onMsgSend} />
+          {console.log('token : ', token)}
+          <InputComponent onSend={() => setToken('ABCDEFGHI')} />
         </View>
       </View>
       <SafeAreaView style={styles.backgroundStyle} />
