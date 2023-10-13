@@ -22,7 +22,7 @@ const StartChatInstructionsComponent = () => {
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.instructionHeader}>Start a new conversation</Text>
-          <Text style={styles.instructionDetails}>
+          <Text className="text-[3vh] uppercase font-bold text-grey998shade">
             Type your first message below.
           </Text>
         </View>
